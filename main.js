@@ -129,3 +129,14 @@ document.querySelectorAll('.about-card, .service-card, .approach-step, .contact-
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(el);
 });
+
+// Analytics
+const API_URL = window.SIERHILL_API_URL || 'https://sierhill-api-production.up.railway.app';
+fetch(`${API_URL}/api/v1/analytics/pageview`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+        path: window.location.pathname,
+        referrer: document.referrer,
+    }),
+}).catch(() => {});
