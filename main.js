@@ -131,7 +131,7 @@ document.querySelectorAll('.about-card, .service-card, .approach-step, .contact-
 });
 
 // Analytics
-const API_URL = window.SIERHILL_API_URL || 'https://sierhill-api-production.up.railway.app';
+const API_URL = window.SIERHILL_API_URL || 'https://impartial-surprise-production-e659.up.railway.app';
 fetch(`${API_URL}/api/v1/analytics/pageview`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
