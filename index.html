@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sierhill | Genomic Analysis</title>
+    <meta name="description" content="Sierhill is a genomic analysis organization advancing precision research through cutting-edge sequencing, bioinformatics, and data interpretation.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="/" class="logo">
+                <svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 2C10 2 6 6 6 10c0 3 2 5.5 4 7.5S14 22 14 26h4c0-4 2-6.5 4-8.5S26 13 26 10c0-4-4-8-10-8z" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <path d="M11 12h10M11 16h10M13 20h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <circle cx="16" cy="8" r="1.5" fill="currentColor"/>
+                </svg>
+                <span>Sierhill</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#approach">Approach</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-bg">
+            <canvas id="dna-canvas"></canvas>
+        </div>
+        <div class="container hero-content">
+            <h1>Decoding the Blueprint of Life</h1>
+            <p>Sierhill is a genomic analysis organization advancing precision research through cutting-edge sequencing, bioinformatics, and data-driven discovery.</p>
+            <div class="hero-actions">
+                <a href="#services" class="btn btn-primary">Our Services</a>
+                <a href="#contact" class="btn btn-outline">Get in Touch</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Sierhill</h2>
+                <p>We bridge the gap between raw genomic data and actionable biological insight.</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-number">01</div>
+                    <h3>Mission</h3>
+                    <p>To accelerate genomic research by providing rigorous, reproducible, and accessible analysis to researchers and institutions worldwide.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-number">02</div>
+                    <h3>Expertise</h3>
+                    <p>Our team combines deep domain knowledge in molecular biology, computational genomics, and statistical genetics to deliver meaningful results.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-number">03</div>
+                    <h3>Impact</h3>
+                    <p>From rare disease research to population-scale studies, our analyses inform decisions that shape the future of biological and medical science.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>Services</h2>
+                <p>End-to-end genomic analysis capabilities designed for modern research.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" fill="none"><path d="M8 38V10l16-6 16 6v28l-16 6-16-6z" stroke="currentColor" stroke-width="2"/><path d="M24 4v40M8 10l16 6 16-6" stroke="currentColor" stroke-width="2"/></svg>
+                    </div>
+                    <h3>Whole Genome Sequencing</h3>
+                    <p>Comprehensive variant calling, annotation, and interpretation across entire genomes with industry-leading accuracy.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" fill="none"><rect x="6" y="6" width="36" height="36" rx="4" stroke="currentColor" stroke-width="2"/><path d="M6 18h36M18 6v36" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="30" cy="30" r="2" fill="currentColor"/><circle cx="36" cy="24" r="2" fill="currentColor"/></svg>
+                    </div>
+                    <h3>Transcriptomics</h3>
+                    <p>RNA-seq analysis, differential gene expression, pathway enrichment, and single-cell transcriptomics pipelines.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2"/><path d="M24 4a20 20 0 0 1 0 40" stroke="currentColor" stroke-width="2"/><path d="M14 12h20M10 24h28M14 36h20" stroke="currentColor" stroke-width="2"/></svg>
+                    </div>
+                    <h3>Population Genomics</h3>
+                    <p>Large-scale GWAS, ancestry inference, and population structure analysis for biobank and cohort studies.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" fill="none"><path d="M6 38l8-12 8 8 8-20 12 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 6v36h36" stroke="currentColor" stroke-width="2"/></svg>
+                    </div>
+                    <h3>Bioinformatics Pipelines</h3>
+                    <p>Custom pipeline development, workflow automation, and cloud-native infrastructure for scalable genomic computation.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" fill="none"><path d="M24 4v8M24 36v8M4 24h8M36 24h8M10 10l6 6M32 32l6 6M38 10l-6 6M16 32l-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="24" r="8" stroke="currentColor" stroke-width="2"/></svg>
+                    </div>
+                    <h3>Epigenomics</h3>
+                    <p>Methylation profiling, chromatin accessibility analysis, and histone modification mapping for gene regulation studies.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" fill="none"><path d="M24 4l4 8h8l-6 6 2 8-8-4-8 4 2-8-6-6h8l4-8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="24" cy="34" r="10" stroke="currentColor" stroke-width="2"/><path d="M20 34h8M24 30v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </div>
+                    <h3>Consulting</h3>
+                    <p>Strategic guidance on study design, grant applications, data management plans, and analytical strategy for genomic projects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="approach" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Approach</h2>
+                <p>A disciplined, reproducible workflow from sample to insight.</p>
+            </div>
+            <div class="approach-timeline">
+                <div class="approach-step">
+                    <div class="step-marker">1</div>
+                    <div class="step-content">
+                        <h3>Consultation</h3>
+                        <p>We work closely with your team to understand research questions, sample characteristics, and desired outcomes.</p>
+                    </div>
+                </div>
+                <div class="approach-step">
+                    <div class="step-marker">2</div>
+                    <div class="step-content">
+                        <h3>Data Processing</h3>
+                        <p>Raw sequencing data undergoes quality control, alignment, and variant calling using validated, version-controlled pipelines.</p>
+                    </div>
+                </div>
+                <div class="approach-step">
+                    <div class="step-marker">3</div>
+                    <div class="step-content">
+                        <h3>Analysis</h3>
+                        <p>Statistical and computational methods are applied to extract biologically meaningful signals from processed data.</p>
+                    </div>
+                </div>
+                <div class="approach-step">
+                    <div class="step-marker">4</div>
+                    <div class="step-content">
+                        <h3>Reporting</h3>
+                        <p>Clear, publication-ready reports with interactive visualizations, methods documentation, and full reproducibility artifacts.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get in Touch</h2>
+                <p>Ready to start your genomic analysis project? We'd love to hear from you.</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3>Email</h3>
+                        <p><a href="mailto:contact@sierhill.org">contact@sierhill.org</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Collaboration</h3>
+                        <p>We partner with academic institutions, biotech companies, and research consortia. Reach out to discuss how we can support your work.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <span class="logo">Sierhill</span>
+                <p>Advancing genomic research through rigorous analysis.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#approach">Approach</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Sierhill. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
