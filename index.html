@@ -27,6 +27,20 @@
                 <li><a href="#approach">Approach</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <div class="search-wrapper">
+                <button class="search-toggle" aria-label="Search papers">
+                    <svg viewBox="0 0 24 24" fill="none" width="20" height="20"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5L20 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </button>
+                <div class="search-panel" id="search-panel">
+                    <form class="search-form" id="search-form" role="search">
+                        <input type="search" id="search-input" class="search-input" placeholder="Search research papers..." autocomplete="off" />
+                        <button type="submit" class="search-submit" aria-label="Search">
+                            <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5L20 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                        </button>
+                    </form>
+                    <div class="search-results" id="search-results"></div>
+                </div>
+            </div>
             <button class="nav-toggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
             </button>

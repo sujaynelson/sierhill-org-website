@@ -130,8 +130,75 @@ document.querySelectorAll('.about-card, .service-card, .approach-step, .contact-
     observer.observe(el);
 });
 
-// Analytics
+// Paper search
 const API_URL = window.SIERHILL_API_URL || 'https://impartial-surprise-production-e659.up.railway.app';
+
+const searchToggle = document.querySelector('.search-toggle');
+const searchPanel = document.getElementById('search-panel');
+const searchForm = document.getElementById('search-form');
+const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('search-results');
+
+searchToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    searchPanel.classList.toggle('open');
+    if (searchPanel.classList.contains('open')) {
+        searchInput.focus();
+    }
+});
+
+document.addEventListener('click', (e) => {
+    if (!searchPanel.contains(e.target) && e.target !== searchToggle) {
+        searchPanel.classList.remove('open');
+    }
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        searchPanel.classList.remove('open');
+    }
+});
+
+searchForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const query = searchInput.value.trim();
+    if (!query) return;
+
+    searchResults.innerHTML = '<div class="search-status"><div class="search-spinner"></div><br>Searching papers...</div>';
+
+    try {
+        const resp = await fetch(`${API_URL}/api/v1/documents/search?q=${encodeURIComponent(query)}&limit=10`);
+        if (!resp.ok) throw new Error('Search failed');
+        const results = await resp.json();
+
+        if (results.length === 0) {
+            searchResults.innerHTML = '<div class="search-status">No matching papers found.</div>';
+            return;
+        }
+
+        searchResults.innerHTML = results.map(doc => {
+            const similarity = Math.round(doc.similarity * 100);
+            const size = doc.file_size ? `${(doc.file_size / 1024).toFixed(0)} KB` : '';
+            return `<a href="${API_URL}/api/v1/documents/${doc.id}/download" target="_blank" rel="noopener" class="search-result-item">
+                <div class="search-result-title">${escapeHtml(doc.title || doc.filename)}</div>
+                <div class="search-result-meta">
+                    <span>${size}</span>
+                    <span class="search-similarity">${similarity}% match</span>
+                </div>
+            </a>`;
+        }).join('');
+    } catch (err) {
+        searchResults.innerHTML = '<div class="search-status">Search unavailable. Please try again later.</div>';
+    }
+});
+
+function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+}
+
+// Analytics
 fetch(`${API_URL}/api/v1/analytics/pageview`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
