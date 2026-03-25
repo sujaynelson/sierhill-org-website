@@ -130,6 +130,43 @@ document.querySelectorAll('.about-card, .service-card, .approach-step, .contact-
     observer.observe(el);
 });
 
+// Load papers from API
+(async function loadPapers() {
+    const grid = document.getElementById('papers-grid');
+    try {
+        const res = await fetch(`${window.SIERHILL_API_URL || 'https://impartial-surprise-production-e659.up.railway.app'}/api/v1/documents`);
+        const docs = await res.json();
+        if (!docs.length) {
+            grid.innerHTML = '<p class="papers-loading">No papers available.</p>';
+            return;
+        }
+        const apiBase = window.SIERHILL_API_URL || 'https://impartial-surprise-production-e659.up.railway.app';
+        grid.innerHTML = docs.map(doc => {
+            const year = doc.filename.match(/^(\d{4})/)?.[1] || '';
+            const title = doc.title || doc.filename.replace(/\.pdf$/i, '');
+            const sizeMB = (doc.file_size / 1024 / 1024).toFixed(1);
+            return `<a href="${apiBase}/api/v1/documents/${doc.id}/download" target="_blank" rel="noopener" class="paper-card">
+                <svg class="paper-icon" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor" stroke-width="1.5"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                <div class="paper-info">
+                    ${year ? `<div class="paper-year">${year}</div>` : ''}
+                    <div class="paper-title">${title}</div>
+                    <div class="paper-size">${sizeMB} MB</div>
+                </div>
+            </a>`;
+        }).join('');
+
+        // Animate paper cards on scroll
+        grid.querySelectorAll('.paper-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(24px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    } catch (e) {
+        grid.innerHTML = '<p class="papers-loading">Unable to load papers.</p>';
+    }
+})();
+
 // Analytics
 const API_URL = window.SIERHILL_API_URL || 'https://impartial-surprise-production-e659.up.railway.app';
 fetch(`${API_URL}/api/v1/analytics/pageview`, {
