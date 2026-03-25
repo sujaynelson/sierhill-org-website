@@ -1,8 +1,42 @@
 const { Router } = require('express');
 const pool = require('../db');
 const requireApiKey = require('../middleware/auth');
+const { getEmbedding } = require('../embeddings');
 
 const router = Router();
+
+// Search documents by semantic similarity
+router.get('/api/v1/documents/search', async (req, res) => {
+    const { q, limit } = req.query;
+    if (!q || !q.trim()) {
+        return res.status(400).json({ error: 'Query parameter "q" is required' });
+    }
+
+    if (!process.env.OPENAI_API_KEY) {
+        return res.status(503).json({ error: 'Search is not configured' });
+    }
+
+    try {
+        const embedding = await getEmbedding(q.trim());
+        const embeddingStr = `[${embedding.join(',')}]`;
+        const maxResults = Math.min(parseInt(limit, 10) || 10, 27);
+
+        const result = await pool.query(
+            `SELECT id, filename, title, file_size, mime_type, created_at,
+                    1 - (embedding <=> $1::vector) AS similarity
+             FROM documents
+             WHERE embedding IS NOT NULL
+             ORDER BY embedding <=> $1::vector
+             LIMIT $2`,
+            [embeddingStr, maxResults]
+        );
+
+        res.json(result.rows);
+    } catch (err) {
+        console.error('Search error:', err.message);
+        res.status(500).json({ error: 'Search failed' });
+    }
+});
 
 // List all documents (metadata only, no binary data)
 router.get('/api/v1/documents', async (req, res) => {
