@@ -38,7 +38,7 @@ async function run() {
 
             // Extract text from PDF
             const pdf = await pdfParse(doc.data);
-            const text = pdf.text.trim();
+            const text = pdf.text.replace(/\0/g, '').trim();
 
             if (!text) {
                 console.log(`  Skipped: no extractable text`);
