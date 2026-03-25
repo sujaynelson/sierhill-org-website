@@ -5,6 +5,7 @@ const migrate = require('./migrate');
 const healthRoutes = require('./routes/health');
 const contentRoutes = require('./routes/content');
 const analyticsRoutes = require('./routes/analytics');
+const documentsRoutes = require('./routes/documents');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,7 +13,7 @@ const PORT = process.env.PORT || 3000;
 // CORS — allow frontend origin
 app.use(cors({
     origin: process.env.FRONTEND_URL || 'https://www.sierhill.org',
-    methods: ['GET', 'POST', 'PUT'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }));
 
 app.use(express.json());
@@ -31,6 +32,7 @@ app.use('/api/v1/analytics/event', analyticsLimiter);
 app.use(healthRoutes);
 app.use(contentRoutes);
 app.use(analyticsRoutes);
+app.use(documentsRoutes);
 
 // Start
 async function start() {
