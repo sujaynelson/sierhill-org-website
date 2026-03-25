@@ -130,57 +130,6 @@ document.querySelectorAll('.about-card, .service-card, .approach-step, .contact-
     observer.observe(el);
 });
 
-// Papers — embedded list for instant rendering (no API call needed)
-const PAPERS = [
-    {id:1,t:"Antibiotics in Nectar and Honey",y:"2006",s:691991},
-    {id:2,t:"Controlled Release of Butachlor and Oxadiazon",y:"2007",s:288316},
-    {id:3,t:"Transformation, CsCl and HPLC Purification of Plasmids",y:"2007",s:864965},
-    {id:4,t:"Bioactive Natural Product from Dictyota acutiloba",y:"2008",s:194592},
-    {id:5,t:"Antagonistic Actinomycetes from Mangrove",y:"2010",s:190395},
-    {id:6,t:"Antimicrobial Nocardiopsis from Crystallizer Pond",y:"2010",s:227676},
-    {id:7,t:"Streptomyces from Mangrove: Phylogenetic and Antimicrobial Analysis (reprint)",y:"2010",s:221324},
-    {id:8,t:"Bcl2 and Ki67 in Oral Squamous Cell Carcinoma",y:"2011",s:408862},
-    {id:9,t:"Halophilic Streptomyces from Saltpan with PKS Genes",y:"2011",s:336262},
-    {id:10,t:"Streptomyces from Mangrove: Phylogenetic and Antimicrobial Analysis",y:"2011",s:220677},
-    {id:11,t:"Atrazine Biodegradation via trzD",y:"2013",s:792457},
-    {id:12,t:"Bioactive Natural Product from Dictyota acutiloba (reprint)",y:"2013",s:194592},
-    {id:13,t:"Isoptericola for Cellulosic Ethanol Production",y:"2014",s:937521},
-    {id:14,t:"Bioactive Compounds from Marine Streptomyces",y:"2017",s:681526},
-    {id:15,t:"Cellulase from Stenotrophomonas maltophilia",y:"2017",s:527582},
-    {id:16,t:"H3K4 Trimethylation and Aging in C. elegans",y:"2017",s:21220858},
-    {id:17,t:"SET-9/SET-26, H3K4me3, Germline and Longevity",y:"2018",s:4632131},
-    {id:18,t:"Phenolic Toxicity on Entomopathogenic Nematodes and Lentisk",y:"2019",s:2758593},
-    {id:21,t:"Nematode Proxy for Strongyles: Anthelmintic Phenolics",y:"2020",s:576296},
-    {id:22,t:"Steinernema carpocapsae against Red Palm Weevil",y:"2021",s:3439143},
-    {id:23,t:"Temperature-Sensitive Mutations in C. elegans and C. briggsae",y:"2022",s:6197031},
-    {id:24,t:"ADIP, Mechanical Cues, and PCP in Morphogenesis",y:"2025",s:73220014},
-    {id:25,t:"Diversin as a Mechanosensitive Regulator of PCP",y:"2025",s:20604269},
-    {id:26,t:"Endogenous ADIP in Xenopus Neurulation",y:"2025",s:18543150},
-];
-
-(function renderPapers() {
-    const grid = document.getElementById('papers-grid');
-    const apiBase = 'https://impartial-surprise-production-e659.up.railway.app';
-    grid.innerHTML = PAPERS.map(doc => {
-        const sizeMB = (doc.s / 1024 / 1024).toFixed(1);
-        return `<a href="${apiBase}/api/v1/documents/${doc.id}/download" target="_blank" rel="noopener" class="paper-card">
-            <svg class="paper-icon" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor" stroke-width="1.5"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            <div class="paper-info">
-                <div class="paper-year">${doc.y}</div>
-                <div class="paper-title">${doc.t}</div>
-                <div class="paper-size">${sizeMB} MB</div>
-            </div>
-        </a>`;
-    }).join('');
-
-    grid.querySelectorAll('.paper-card').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(24px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
-})();
-
 // Analytics
 const API_URL = window.SIERHILL_API_URL || 'https://impartial-surprise-production-e659.up.railway.app';
 fetch(`${API_URL}/api/v1/analytics/pageview`, {
